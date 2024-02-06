@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
@@ -68,5 +69,13 @@ class UserController extends Controller
     public function export() 
     {
         return Excel::download(new UsersExport, 'users.xlsx' );
+    }
+
+    public function import(Request $request) 
+    {
+        $request->validate(['user_excel' => 'required | mimes:xls,xlsx']);
+        $validador = Excel::import(new UsersImport, request()->file('user_excel'));
+        return redirect('/home')->with('success', 'All good! ');
+        
     }
 }

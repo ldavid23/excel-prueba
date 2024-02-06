@@ -16,10 +16,19 @@
 
                     {{ __('You are logged in!') }}
 
-                    <a href="{{ route('export') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Exportar</a>
+                    
                 </div>
             </div>
+            <a href="{{ route('export') }}" class="button">Exportar</a>
+            <form action="{{route('import')}}" method="POST" enctype = "multipart/form-data">
+                @csrf
+                <input type="file" name="user_excel" id="user_excel" accept=".xlsx" required>
+                <button type="submit">Importar</button>
+            </form>
         </div>
+        @if($message = Session::get('success'))
+        <p> {{$message}} </p>
+        @endif
     </div>
 </div>
 @endsection
