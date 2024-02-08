@@ -13,9 +13,9 @@ class SedeSeeder extends Seeder
      */
     public function run(): void
     {
-        $sedes = ['centro para el desarrollo agroecologico y agroinduestrial',
+        $sedes = ['centro para el desarrollo agroecologico y agroindustrial',
         'centro nacional colombo aleman',
-        'centro industrial y de aviacion',
+        'centro industrial y de aviación',
         'centro comercio y servicios'];
 
         foreach ($sedes as $sede){
