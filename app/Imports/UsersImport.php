@@ -3,10 +3,12 @@
 namespace App\Imports;
 
 use App\Models\User;
+use App\Models\Sede;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UsersImport implements ToModel
+class UsersImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,20 +17,13 @@ class UsersImport implements ToModel
     */
     public function model(array $row)
     {
-        $users = User::all();
-
-        foreach ($users as $user){
-            if ($user->email == $row[1]){
-               return null;
-            }
-        }
+        $sede = Sede::where('nombre', '=', $row['sede'])->first();
         
-
         return new User([
-            'name'     => $row[0],
-            'email'    => $row[1], 
-            'password' => Hash::make($row[2]),  
-            'sede_id'  => $row[3] 
+            'name'     => $row['user'],
+            'email'    => $row['email'], 
+            'password' => Hash::make($row['password']),  
+            'sede_id'  => $sede->id 
         ]);
     }
 }

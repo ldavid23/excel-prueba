@@ -13,10 +13,10 @@ class SedeSeeder extends Seeder
      */
     public function run(): void
     {
-        $sedes = ['Centro para el desarrollo AgroEcologico y AgroInduestrial',
-        'Centro Nacional Colombo Aleman',
-        'Centro Industrial y de Aviacion',
-        'Centro Comercio y Servicios'];
+        $sedes = ['centro para el desarrollo agroecologico y agroinduestrial',
+        'centro nacional colombo aleman',
+        'centro industrial y de aviacion',
+        'centro comercio y servicios'];
 
         foreach ($sedes as $sede){
             DB::table('sedes')->insert(['nombre'=> $sede]);

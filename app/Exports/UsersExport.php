@@ -15,9 +15,7 @@ class UsersExport implements FromArray, WithHeadings, ShouldAutoSize
             'Id',
             'User',
             'Email',
-            'email_verifi_at',
-            'created_at',
-            'update_at',
+            'Password',
             'sede'
         ];
     }
@@ -30,9 +28,7 @@ class UsersExport implements FromArray, WithHeadings, ShouldAutoSize
                 $user->id,
                 $user->name,
                 $user->email,
-                $user->email_verified_at,
-                $user->created_at,
-                $user->updated_at,
+                $user->password,
                 $user->sede->id
             ];
          }
